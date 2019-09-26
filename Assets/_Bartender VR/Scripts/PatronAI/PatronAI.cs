@@ -6,8 +6,10 @@ public class PatronAI : MonoBehaviour
 {
 
     public DrinkSystemManager.DrinkNames desiredDrink;
-
-    public GameObject desiredLocation { get; set; }
+    public PatronManager patronManager;
+    public float thirst, speed;
+    public GameObject desiredLocation;
+    public bool atBar, orderedDrink, gotDrink;
 
     void Start()
     {
