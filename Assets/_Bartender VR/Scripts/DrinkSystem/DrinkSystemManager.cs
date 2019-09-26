@@ -13,7 +13,7 @@ public class DrinkSystemManager : MonoBehaviour
         Ingredient2,
         Ingredient3,
         Ingredient4,
-        Ingredient5,
+        Ingredient5
     }
 
     public enum DrinkNames
@@ -34,7 +34,7 @@ public class DrinkSystemManager : MonoBehaviour
                                                                      DrinkNames.DevDrink5};
 
     [SerializeField]
-    private List<IngredientSO> drinkListIngredients;
+    private List<IngredientSO> drinkListIngredients = new List<IngredientSO>();
 
     private Dictionary<DrinkNames, IngredientSO> drinkList = new Dictionary<DrinkNames, IngredientSO>();
 
@@ -48,6 +48,12 @@ public class DrinkSystemManager : MonoBehaviour
     }
     //Dictionary Aids
 
+    [SerializeField] [ReadOnlyField]
+    private List<DrinkIngredients> myDrink = new List<DrinkIngredients>();
+    [SerializeField] [ReadOnlyField]
+    private bool myDrinkIsShaken = false;
+
+
     /*
      * 3 Portions
      * Each 'pump' is a portion
@@ -57,8 +63,11 @@ public class DrinkSystemManager : MonoBehaviour
 
     void Start()
     {
+        ResetDrink();
+
+        drinkList.Clear();
         //Initialzed the Dictionary
-        for(int i = 0; i < drinkListNames.Count; i++)
+        for (int i = 0; i < drinkListNames.Count; i++)
         {
             drinkList.Add(drinkListNames[i], drinkListIngredients[i]);
         }
@@ -72,12 +81,70 @@ public class DrinkSystemManager : MonoBehaviour
 
     /*
      * TODO 
-     * Create a Drink 
-     * Drink validation Check (when served) (take in an enum)
-     * Drink Clear
+     * Create a myDrink 
+     * myDrink validation Check (when served) (take in an enum) //Validation is on AI side, and so the AI has to detect when it was served
+     * Clear myDrink
+     * myDrink Status? whats in the cup, shaken?
+     * myDrink Serving?
+     *
      * 
      */
 
+    public bool ValidateDrink(DrinkNames drink)
+    {
+        if (myDrinkIsShaken != drinkList[drink].NeedsShaking)
+        {
+            return false;
+        }
+
+        foreach (DrinkIngredients ingredient in Enum.GetValues(typeof(DrinkIngredients)))
+        {
+            //For every ingredient, check how many are in the recipie, then check how many in your drink. If they don't match, they aint the same
+
+            int ingredientsInDrink = 0;
+            int ingredientsInMyDrink = 0;
+
+            foreach (DrinkIngredients ing in drinkList[drink].DrinkContent)
+            {
+                if(ing == ingredient)
+                {
+                    ingredientsInDrink++;
+                }
+            }
+
+            foreach (DrinkIngredients ing in myDrink)
+            {
+                if (ing == ingredient)
+                {
+                    ingredientsInMyDrink++;
+                }
+            }
+
+            if (ingredientsInDrink != ingredientsInMyDrink)
+            {
+                return false;
+            }
+            
+        }
+
+        return true;
+    }
+
+    public void AddIngredient(DrinkIngredients ingredient)
+    {
+        myDrink.Add(ingredient);
+    }
+
+    public void ShakeDrink()
+    {
+        myDrinkIsShaken = true;
+    }
+
+    public void ResetDrink()
+    {
+        myDrink.Clear();
+        myDrinkIsShaken = false;
+    }
 
 
 }

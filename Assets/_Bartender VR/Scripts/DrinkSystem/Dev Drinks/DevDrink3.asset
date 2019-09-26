@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8100570d435015429bca816f88eab16, type: 3}
   m_Name: DevDrink3
   m_EditorClassIdentifier: 
-  drinkName: Dev Drink 3
+  drinkDisplayName: Dev Drink 3
   drinkContent: 010000000100000003000000
   needsShaking: 1
