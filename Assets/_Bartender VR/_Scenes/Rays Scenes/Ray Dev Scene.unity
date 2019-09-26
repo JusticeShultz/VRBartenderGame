@@ -294,3 +294,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1230055656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230055657}
+  - component: {fileID: 1230055658}
+  m_Layer: 0
+  m_Name: BarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1230055657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230055656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1230055658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230055656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc39f76bcfc76d438411dd77c77ec63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkListNames: 0000000001000000020000000300000004000000
+  drinkListIngredients:
+  - {fileID: 11400000, guid: 7b129ad34e2113a45815d21e7a4ddc2b, type: 2}
+  - {fileID: 11400000, guid: aba3de4186aaea94e96d7b60e04b4768, type: 2}
+  - {fileID: 11400000, guid: 4c90727e52cbf7443a030cfee31683d9, type: 2}
+  - {fileID: 11400000, guid: 2431858722a5d3a489e8abac0122d8b6, type: 2}
+  - {fileID: 11400000, guid: e70c6cdc44d81ee4f9e729d05a3a7ffb, type: 2}
