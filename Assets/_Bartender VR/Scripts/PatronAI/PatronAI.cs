@@ -9,6 +9,7 @@ public class PatronAI : MonoBehaviour
     public PatronManager patronManager;
     public GameObject desiredLocation;
     public bool atBar, orderedDrink, gotDrink;
+    public float thirst;
 
     void Start()
     {
