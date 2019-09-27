@@ -54,7 +54,7 @@ public class PatronManager : MonoBehaviour
     {
         GameObject body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
         body.transform.position = spawnLocation.transform.position;
-        var p = body.AddComponent(typeof(PatronAI)) as PatronAI;
+        PatronAI p = body.AddComponent<PatronAI>();
         p.patronManager = this;
         return p;
     }
