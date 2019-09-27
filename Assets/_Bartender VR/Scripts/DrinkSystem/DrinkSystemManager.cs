@@ -9,29 +9,44 @@ public class DrinkSystemManager : MonoBehaviour
     public enum DrinkIngredients
     {
         Ice,
-        Ingredient1,
-        Ingredient2,
-        Ingredient3,
-        Ingredient4,
-        Ingredient5
+        Adelhyde,
+        PowderedDelta,
+        BronsonExtract,
+        Flanergide,
+        Karmotrine
     }
 
     public enum DrinkNames
     {
-        DevDrink1,
-        DevDrink2,
-        DevDrink3,
-        DevDrink4,
-        DevDrink5
+        BadDrink = -1,
+        BadTouch,
+        Beer,
+        BlueFairy,
+        Brandtini,
+        FringeWeaver,
+        GutPunch,
+        Moonblast,
+        PianoMan,
+        PileDriver,
+        SugarRush,
+        Suplex,
     }
 
     //Dictionary Aids (TLDR. Unity dont have dictionary support in Inspector, So we make it in arrays, then make the dictionary at start)
     [SerializeField] [ReadOnlyField] //This needs to be manually updated when we add and subtract drinks
-    private List<DrinkNames> drinkListNames = new List<DrinkNames> { DrinkNames.DevDrink1,
-                                                                     DrinkNames.DevDrink2,
-                                                                     DrinkNames.DevDrink3,
-                                                                     DrinkNames.DevDrink4,
-                                                                     DrinkNames.DevDrink5};
+    private List<DrinkNames> drinkListNames = new List<DrinkNames> { DrinkNames.BadDrink,
+                                                                     DrinkNames.BadTouch,
+                                                                     DrinkNames.Beer,
+                                                                     DrinkNames.BlueFairy,
+                                                                     DrinkNames.Brandtini,
+                                                                     DrinkNames.FringeWeaver,
+                                                                     DrinkNames.GutPunch,
+                                                                     DrinkNames.Moonblast,
+                                                                     DrinkNames.PianoMan,
+                                                                     DrinkNames.PileDriver,
+                                                                     DrinkNames.SugarRush,
+                                                                     DrinkNames.Suplex
+                                                                    };
 
     [SerializeField]
     private List<IngredientSO> drinkListIngredients = new List<IngredientSO>();
@@ -89,9 +104,26 @@ public class DrinkSystemManager : MonoBehaviour
      *
      * 
      */
+    public DrinkNames ScanDrink()
+    {
+        foreach (DrinkNames drinks in Enum.GetValues(typeof(DrinkNames)))
+        {
+            if (ValidateDrink(drinks) == true)
+            {
+                return drinks;
+            }
+        }
 
+        return DrinkNames.BadDrink;
+    }
+    
     public bool ValidateDrink(DrinkNames drink)
     {
+        if (drink == DrinkNames.BadDrink)
+        {
+            return false;
+        }
+
         if (myDrinkIsShaken != drinkList[drink].NeedsShaking)
         {
             return false;
@@ -100,7 +132,6 @@ public class DrinkSystemManager : MonoBehaviour
         foreach (DrinkIngredients ingredient in Enum.GetValues(typeof(DrinkIngredients)))
         {
             //For every ingredient, check how many are in the recipie, then check how many in your drink. If they don't match, they aint the same
-
             int ingredientsInDrink = 0;
             int ingredientsInMyDrink = 0;
 
@@ -145,6 +176,8 @@ public class DrinkSystemManager : MonoBehaviour
         myDrink.Clear();
         myDrinkIsShaken = false;
     }
+
+
 
 
 }

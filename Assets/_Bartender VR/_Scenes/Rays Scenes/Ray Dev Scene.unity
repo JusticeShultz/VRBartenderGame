@@ -317,7 +317,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Ingredient 3
+  m_Text: Bronson Extract
 --- !u!222 &300033294
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 816111064}
   - component: {fileID: 816111063}
   m_Layer: 5
-  m_Name: Serve Drink
+  m_Name: Check Drink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Ingredient 1
+  m_Text: Adelhyde
 --- !u!222 &820055736
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1323,7 +1323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Ingredient 2
+  m_Text: Powdered Delta
 --- !u!222 &916207741
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1415,6 +1415,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &979198002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979198003}
+  - component: {fileID: 979198005}
+  - component: {fileID: 979198004}
+  m_Layer: 5
+  m_Name: Your Drink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &979198003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979198002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1838090800}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -338}
+  m_SizeDelta: {x: 28, y: 62}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &979198004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979198002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 893c0fe000a007c4bace88cd0a568e6d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &979198005
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979198002}
+  m_CullTransparentMesh: 0
 --- !u!1 &1002274351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,7 +1556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Serve Drink
+  m_Text: Check Drink
 --- !u!222 &1002274354
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1536,13 +1609,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc39f76bcfc76d438411dd77c77ec63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkListNames: 0000000001000000020000000300000004000000
+  drinkListNames: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a000000
   drinkListIngredients:
-  - {fileID: 11400000, guid: 7b129ad34e2113a45815d21e7a4ddc2b, type: 2}
-  - {fileID: 11400000, guid: aba3de4186aaea94e96d7b60e04b4768, type: 2}
-  - {fileID: 11400000, guid: 4c90727e52cbf7443a030cfee31683d9, type: 2}
-  - {fileID: 11400000, guid: 2431858722a5d3a489e8abac0122d8b6, type: 2}
-  - {fileID: 11400000, guid: e70c6cdc44d81ee4f9e729d05a3a7ffb, type: 2}
+  - {fileID: 11400000, guid: 3910f30b0dd442343a12adba2fdc3f0a, type: 2}
+  - {fileID: 11400000, guid: dbd8b27282f98d24ead462888b15b24b, type: 2}
+  - {fileID: 11400000, guid: 0bf0364afedbeb140b736722da005a35, type: 2}
+  - {fileID: 11400000, guid: 0c1845fc15b6ed64b9423892626d055f, type: 2}
+  - {fileID: 11400000, guid: 57d56f5865d9eaa4583885fcc53e9008, type: 2}
+  - {fileID: 11400000, guid: a5575602d9600fd4b8c05c5a374a251a, type: 2}
+  - {fileID: 11400000, guid: 8deadffda2fd9e443bd8aa7310d52969, type: 2}
+  - {fileID: 11400000, guid: 4f2ce91e52653be448857f6920187ea9, type: 2}
+  - {fileID: 11400000, guid: 999f8b23c4c97b741bb41c11f9d4199c, type: 2}
+  - {fileID: 11400000, guid: e65cfba535756ec4b8b9e2aaed1f9cf6, type: 2}
+  - {fileID: 11400000, guid: a8f39c16ec42a3f448adda65cbca0b96, type: 2}
+  - {fileID: 11400000, guid: 65f522d42cde97542abb93ac428db8d3, type: 2}
   myDrink: 
   myDrinkIsShaken: 0
 --- !u!114 &1230055659
@@ -1558,6 +1638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomDrinks: 
+  TargetDrinkImage: {fileID: 1941988115}
+  YourDrinkImage: {fileID: 979198004}
   TargetDrink: 0
   drinkIsGood: 0
   drinkIsBad: 0
@@ -1629,7 +1711,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Ingredient 4
+  m_Text: Flanergide
 --- !u!222 &1699709315
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1815,7 +1897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1837,7 +1919,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1867,6 +1949,8 @@ RectTransform:
   - {fileID: 1893274165}
   - {fileID: 816111062}
   - {fileID: 106353494}
+  - {fileID: 1941988114}
+  - {fileID: 979198003}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2132,6 +2216,79 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893274164}
+  m_CullTransparentMesh: 0
+--- !u!1 &1941988113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941988114}
+  - component: {fileID: 1941988116}
+  - component: {fileID: 1941988115}
+  m_Layer: 5
+  m_Name: Request
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1941988114
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941988113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1838090800}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 28, y: 62}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1941988115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941988113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 893c0fe000a007c4bace88cd0a568e6d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1941988116
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941988113}
   m_CullTransparentMesh: 0
 --- !u!1 &1953362781
 GameObject:
@@ -2588,7 +2745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Ingredient 5
+  m_Text: Karmotrine
 --- !u!222 &2111089838
 CanvasRenderer:
   m_ObjectHideFlags: 0

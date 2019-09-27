@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrinkSystemUnitTest : MonoBehaviour
 {
     DrinkSystemManager drinkGod;
 
     public List<DrinkSystemManager.DrinkNames> RandomDrinks;
+
+    public Image TargetDrinkImage;
+
+    public Image YourDrinkImage;
+
 
     [ReadOnlyField]
     public DrinkSystemManager.DrinkNames TargetDrink;
@@ -41,12 +47,18 @@ public class DrinkSystemUnitTest : MonoBehaviour
         ResetDrink();
         drinkIsGood = false;
         drinkIsBad = false;
+        TargetDrinkImage.sprite = drinkGod.DrinkList[TargetDrink].DrinkImg;
+        TargetDrinkImage.SetNativeSize();
     }
 
     public void CheckDrink()
     {
         drinkIsGood = drinkGod.ValidateDrink(TargetDrink);
         drinkIsBad = !drinkGod.ValidateDrink(TargetDrink);
+
+        YourDrinkImage.sprite = drinkGod.DrinkList[drinkGod.ScanDrink()].DrinkImg;
+
+        YourDrinkImage.SetNativeSize();
     }
 
     public void ResetDrink()
@@ -54,7 +66,7 @@ public class DrinkSystemUnitTest : MonoBehaviour
         drinkGod.ResetDrink();
         drinkIsGood = false;
         drinkIsBad = false;
-
+        YourDrinkImage.sprite = null;
     }
     
     public void AddIce()
@@ -69,27 +81,27 @@ public class DrinkSystemUnitTest : MonoBehaviour
     
     public void AddIngredient1()
     {
-        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Ingredient1);
+        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Adelhyde);
     }
     
     public void AddIngredient2()
     {
-        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Ingredient2);
+        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.PowderedDelta);
     }
 
     public void AddIngredient3()
     {
-        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Ingredient3);
+        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.BronsonExtract);
     }
 
     public void AddIngredient4()
     {
-        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Ingredient4);
+        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Flanergide);
     }
 
     public void AddIngredient5()
     {
-        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Ingredient5);
+        drinkGod.AddIngredient(DrinkSystemManager.DrinkIngredients.Karmotrine);
     }
 
 
