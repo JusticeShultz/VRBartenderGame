@@ -9,6 +9,8 @@ public class PatronManager : MonoBehaviour
     [SerializeField] int maxPatrons;
     [SerializeField] [Range(0f, 1f)] float patronGenerationChance;
     [SerializeField] float timeBetweenGeneration;
+    
+    public static float thirstThreshold;
 
     [Header("Required Fields")]
     [SerializeField] List<GameObject> spots;
@@ -19,12 +21,17 @@ public class PatronManager : MonoBehaviour
     [SerializeField] List<PatronAI> patrons;
 
     float currTime;
+    IBehaviour root;
+
+    public List<GameObject> openSpots;
 
     void Start()
     {
-        if(spots == null) { Debug.LogError("Spots cannot be empty"); }
-        if(spawnLocation == null) { Debug.LogError("Spawn Location cannot be empty"); }
-        if(patrons == null) { patrons = new List<PatronAI>(); }
+        if (spots == null) { Debug.LogError("Spots cannot be empty"); }
+        if (spawnLocation == null) { Debug.LogError("Spawn Location cannot be empty"); }
+        if (patrons == null) { patrons = new List<PatronAI>(); }
+        openSpots = new List<GameObject>(spots.Count);
+        foreach (GameObject s in spots) openSpots.Add(s);
     }
 
 
@@ -47,19 +54,25 @@ public class PatronManager : MonoBehaviour
     {
         GameObject body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
         body.transform.position = spawnLocation.transform.position;
-        return body.AddComponent(typeof(PatronAI)) as PatronAI;
+        var p = body.AddComponent(typeof(PatronAI)) as PatronAI;
+        p.patronManager = this;
+        return p;
     }
 
-    enum BehaviorResult
+    private List<IBehaviour> PopulateBranch(params IBehaviour[] children)
     {
-        Success,
-        Failure
+        var t = new List<IBehaviour>();
+        foreach (IBehaviour p in children) t.Add(p);
+        return t;
     }
 
-    interface IBehavior
+    IBehaviour PopulateBehaviours()
     {
-        BehaviorResult DoBehavior();
+        var root = new SelectorNode();
+
+        //root
+
+
+        return root;
     }
-
-
 }
