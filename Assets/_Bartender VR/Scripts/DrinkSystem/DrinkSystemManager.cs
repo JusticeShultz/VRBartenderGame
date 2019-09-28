@@ -69,6 +69,15 @@ public class DrinkSystemManager : MonoBehaviour
     private bool myDrinkIsShaken = false;
 
 
+    //Menu System
+    [SerializeField][ReadOnlyField]
+    private DrinkNames DrinkOnMenu;
+
+    [SerializeField]
+    private MeshRenderer MenuDrinkRenderer;
+    
+
+
     /*
      * 3 Portions
      * Each 'pump' is a portion
@@ -80,12 +89,16 @@ public class DrinkSystemManager : MonoBehaviour
     {
         ResetDrink();
 
+
         drinkList.Clear();
         //Initialzed the Dictionary
         for (int i = 0; i < drinkListNames.Count; i++)
         {
             drinkList.Add(drinkListNames[i], drinkListIngredients[i]);
         }
+
+        MenuDrinkRenderer.materials[0].SetTexture("_MainTex", drinkList[DrinkOnMenu].DrinkImg);
+
     }
 
     //Returns a Random Drink
@@ -104,6 +117,20 @@ public class DrinkSystemManager : MonoBehaviour
      *
      * 
      */
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MenuSwipe(true);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MenuSwipe(false);
+        }
+    }
+
+
+
     public DrinkNames ScanDrink()
     {
         foreach (DrinkNames drinks in Enum.GetValues(typeof(DrinkNames)))
@@ -177,6 +204,40 @@ public class DrinkSystemManager : MonoBehaviour
         myDrinkIsShaken = false;
     }
 
+    public void MenuSwipe(bool isToRight)
+    {
+        if (isToRight == true)
+        {
+            DrinkNames[] Arr = (DrinkNames[])Enum.GetValues(typeof(DrinkNames));
+            int idx = Array.IndexOf<DrinkNames>(Arr, DrinkOnMenu) + 1;
+
+            if (idx == Arr.Length - 1)
+            {
+                DrinkOnMenu = Arr[0];
+            }
+            else
+            {
+                DrinkOnMenu = Arr[idx];
+            }
+        }
+        else
+        {
+            DrinkNames[] Arr = (DrinkNames[])Enum.GetValues(typeof(DrinkNames));
+            int idx = Array.IndexOf<DrinkNames>(Arr, DrinkOnMenu) - 1;
+
+            if (idx == -1)
+            {
+                DrinkOnMenu = Arr[Arr.Length - 2];
+            }
+            else
+            {
+                DrinkOnMenu = Arr[idx];
+            }
+
+        }
+
+        MenuDrinkRenderer.materials[0].SetTexture("_MainTex", drinkList[DrinkOnMenu].DrinkImg);
+    }
 
 
 

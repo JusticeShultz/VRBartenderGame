@@ -10,11 +10,11 @@ public class IngredientSO : ScriptableObject
     private string drinkDisplayName;
 
     [SerializeField]
-    private Sprite drinkImg;
+    private Texture drinkImg;
     
-
     [SerializeField]
     private List<DrinkSystemManager.DrinkIngredients> drinkContent;
+
     [SerializeField]
     private bool needsShaking;
 
@@ -29,7 +29,7 @@ public class IngredientSO : ScriptableObject
     }
 
     [HideInInspector]
-    public Sprite DrinkImg
+    public Texture DrinkImg
     {
         get
         {

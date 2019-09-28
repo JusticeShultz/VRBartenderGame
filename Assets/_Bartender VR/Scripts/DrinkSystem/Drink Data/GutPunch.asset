@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GutPunch
   m_EditorClassIdentifier: 
   drinkDisplayName: Gut Punch
-  drinkImg: {fileID: 21300000, guid: cb7d22a4ce179ff428e34f1086b239db, type: 3}
+  drinkImg: {fileID: 2800000, guid: cb7d22a4ce179ff428e34f1086b239db, type: 3}
   drinkContent: 0300000003000000030000000400000005000000
   needsShaking: 1

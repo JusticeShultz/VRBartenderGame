@@ -27,7 +27,7 @@ public class DrinkSystemUnitTest : MonoBehaviour
         drinkGod = GetComponent<DrinkSystemManager>();
 
         //GetRandomDrinksTest(10);
-        NewRequest();
+        //NewRequest();
     }
 
     void GetRandomDrinksTest(int count)
@@ -41,25 +41,25 @@ public class DrinkSystemUnitTest : MonoBehaviour
     }
 
 
-    public void NewRequest()
-    {
-        TargetDrink = drinkGod.RequestRandomDrink();
-        ResetDrink();
-        drinkIsGood = false;
-        drinkIsBad = false;
-        TargetDrinkImage.sprite = drinkGod.DrinkList[TargetDrink].DrinkImg;
-        TargetDrinkImage.SetNativeSize();
-    }
+    //public void NewRequest()
+    //{
+    //    TargetDrink = drinkGod.RequestRandomDrink();
+    //    ResetDrink();
+    //    drinkIsGood = false;
+    //    drinkIsBad = false;
+    //    TargetDrinkImage.sprite = drinkGod.DrinkList[TargetDrink].DrinkImg.;
+    //    TargetDrinkImage.SetNativeSize();
+    //}
 
-    public void CheckDrink()
-    {
-        drinkIsGood = drinkGod.ValidateDrink(TargetDrink);
-        drinkIsBad = !drinkGod.ValidateDrink(TargetDrink);
+    //public void CheckDrink()
+    //{
+    //    drinkIsGood = drinkGod.ValidateDrink(TargetDrink);
+    //    drinkIsBad = !drinkGod.ValidateDrink(TargetDrink);
 
-        YourDrinkImage.sprite = drinkGod.DrinkList[drinkGod.ScanDrink()].DrinkImg;
+    //    YourDrinkImage.sprite = drinkGod.DrinkList[drinkGod.ScanDrink()].DrinkImg;
 
-        YourDrinkImage.SetNativeSize();
-    }
+    //    YourDrinkImage.SetNativeSize();
+    //}
 
     public void ResetDrink()
     {

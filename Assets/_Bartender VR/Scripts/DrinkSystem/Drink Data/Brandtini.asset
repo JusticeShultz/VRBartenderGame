@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Brandtini
   m_EditorClassIdentifier: 
   drinkDisplayName: Brandtini
-  drinkImg: {fileID: 21300000, guid: 687c16aa13647ee4b9ac60dd57e1801c, type: 3}
+  drinkImg: {fileID: 2800000, guid: f41ef4221f1d4b54195266b6612ae644, type: 3}
   drinkContent: 0100000001000000010000000200000002000000
   needsShaking: 1
