@@ -45,16 +45,6 @@ public class SelectorNode : IBehaviour
 
 //Question Nodes
 
-public class AmThirsty : IBehaviour
-{
-    public BehaviourResult DoBehaviour(PatronAI patron)
-    {
-        if (patron.thirst < PatronManager.thirstThreshold)
-            return BehaviourResult.Success;
-        return BehaviourResult.Failure;
-    }
-}
-
 public class AtBar : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
@@ -94,7 +84,7 @@ public class FindSpot : IBehaviour
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
         var pm = patron.patronManager;
-        patron.desiredLocation = pm.openSpots[Random.Range(0, pm.openSpots.Count - 1)];
+        patron.desiredLocation = pm.spots[pm.patrons.FindIndex(i => { return i == patron; })];
         return BehaviourResult.Success;
     }
 }

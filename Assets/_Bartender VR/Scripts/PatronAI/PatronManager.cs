@@ -13,25 +13,20 @@ public class PatronManager : MonoBehaviour
     public static float thirstThreshold;
 
     [Header("Required Fields")]
-    [SerializeField] List<GameObject> spots;
+    [SerializeField] public List<GameObject> spots;
     [SerializeField] GameObject spawnLocation;
-    [SerializeField] DrinkSystemManager drinkSystemManager;
 
     [Header("Generated Fields")]
-    [SerializeField] List<PatronAI> patrons;
+    [SerializeField] public List<PatronAI> patrons;
 
     float currTime;
     IBehaviour root;
-
-    public List<GameObject> openSpots;
 
     void Start()
     {
         if (spots == null) { Debug.LogError("Spots cannot be empty"); }
         if (spawnLocation == null) { Debug.LogError("Spawn Location cannot be empty"); }
         if (patrons == null) { patrons = new List<PatronAI>(); }
-        openSpots = new List<GameObject>(spots.Count);
-        foreach (GameObject s in spots) openSpots.Add(s);
     }
 
 
