@@ -26,6 +26,9 @@ public class DrinkFillSystem : MonoBehaviour
     private bool IsButtonDown = false;
     private bool Filled = false;
 
+    [Space(10)]
+    [Header("Rays shit, don't forget to set references")]
+
     [SerializeField]
     private DrinkSystemManager drinkSystem;
 
