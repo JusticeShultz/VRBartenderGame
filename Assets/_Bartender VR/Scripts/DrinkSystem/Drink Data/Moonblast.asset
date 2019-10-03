@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drinkDisplayName: Moonblast
   drinkImg: {fileID: 2800000, guid: 03659e37ef4e4154399941fda6a09f6c, type: 3}
-  drinkContent: 0100000000000000020000000400000005000000
+  drinkContent: 0000000001000000020000000400000005000000
   needsShaking: 1

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drinkDisplayName: Piano Man
   drinkImg: {fileID: 2800000, guid: 9958197d54d31c349852e424dacb7049, type: 3}
-  drinkContent: 0000000001000000030000000400000002000000
+  drinkContent: 0100000000000000030000000400000002000000
   needsShaking: 1

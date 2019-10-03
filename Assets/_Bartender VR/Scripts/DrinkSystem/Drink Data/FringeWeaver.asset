@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drinkDisplayName: Fringe Weaver
   drinkImg: {fileID: 2800000, guid: f41ef4221f1d4b54195266b6612ae644, type: 3}
-  drinkContent: 0100000005000000050000000500000005000000
+  drinkContent: 0000000004000000040000000400000004000000
   needsShaking: 1

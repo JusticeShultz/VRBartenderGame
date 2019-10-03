@@ -8,12 +8,12 @@ public class DrinkSystemManager : MonoBehaviour
 {
     public enum DrinkIngredients
     {
-        Ice,
-        Adelhyde,
-        PowderedDelta,
-        BronsonExtract,
-        Flanergide,
-        Karmotrine
+        Ice = 0,
+        Adelhyde = 1,
+        PowderedDelta = 2,
+        BronsonExtract = 3,
+        Flanergide = 4,
+        Karmotrine = 5
     }
 
     public enum DrinkNames
@@ -70,12 +70,22 @@ public class DrinkSystemManager : MonoBehaviour
 
 
     //Menu System
-    [SerializeField][ReadOnlyField]
+    [SerializeField] [ReadOnlyField]
     private DrinkNames DrinkOnMenu;
 
+
+    [Space(10)]
+    [Header("Material Shit")]
     [SerializeField]
     private MeshRenderer MenuDrinkRenderer;
-    
+
+    [SerializeField]
+    private List<Material> ServingCountMat;
+
+    [SerializeField]
+    private List<MeshRenderer> ServingMesh;
+
+    private Dictionary<DrinkIngredients, MeshRenderer> MenuIngredientsMesh = new Dictionary<DrinkIngredients, MeshRenderer>();
 
 
     /*
@@ -97,8 +107,14 @@ public class DrinkSystemManager : MonoBehaviour
             drinkList.Add(drinkListNames[i], drinkListIngredients[i]);
         }
 
-        MenuDrinkRenderer.materials[0].SetTexture("_MainTex", drinkList[DrinkOnMenu].DrinkImg);
 
+        for (int i = 0; i < ServingMesh.Count; i++)
+        {
+            MenuIngredientsMesh.Add((DrinkIngredients)i, ServingMesh[i]);
+        }
+
+
+        SetMenuMaterial();
     }
 
     //Returns a Random Drink
@@ -235,10 +251,68 @@ public class DrinkSystemManager : MonoBehaviour
             }
 
         }
-
-        MenuDrinkRenderer.materials[0].SetTexture("_MainTex", drinkList[DrinkOnMenu].DrinkImg);
+        SetMenuMaterial();
     }
 
+    private void SetMenuMaterial()
+    {
+        //Change the Menu Drink Icon
+        MenuDrinkRenderer.materials[0].SetTexture("_MainTex", drinkList[DrinkOnMenu].DrinkImg);
+
+        //Change the ingredient serving
+        foreach (DrinkIngredients ingredient in Enum.GetValues(typeof(DrinkIngredients)))
+        {
+
+            //For every ingredient, check how many are in the recipie, then check how many in your drink. If they don't match, they aint the same
+            int ingredientsInDrink = 0;
+
+            foreach (DrinkIngredients ing in drinkList[DrinkOnMenu].DrinkContent)
+            {
+                if (ing == ingredient)
+                {
+                    ingredientsInDrink++;
+                }
+            }
+
+            MenuIngredientsMesh[ingredient].material = ServingCountMat[ingredientsInDrink];
+
+        }
+
+
+    }
+
+
+    //Add Manual Ingredient
+
+    public void AddIce()
+    {
+        AddIngredient(DrinkIngredients.Ice);
+    }
+
+    public void AddAdelhyde()
+    {
+        AddIngredient(DrinkIngredients.Adelhyde);
+    }
+
+    public void AddPowderedDelta()
+    {
+        AddIngredient(DrinkIngredients.PowderedDelta);
+    }
+
+    public void AddBronsonExtract()
+    {
+        AddIngredient(DrinkIngredients.BronsonExtract);
+    }
+
+    public void AddFlanergide()
+    {
+        AddIngredient(DrinkIngredients.Flanergide);
+    }
+
+    public void AddKarmotrine()
+    {
+        AddIngredient(DrinkIngredients.Karmotrine);
+    }
 
 
 }
