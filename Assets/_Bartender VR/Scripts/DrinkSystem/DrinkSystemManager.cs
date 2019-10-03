@@ -88,6 +88,32 @@ public class DrinkSystemManager : MonoBehaviour
     private Dictionary<DrinkIngredients, MeshRenderer> MenuIngredientsMesh = new Dictionary<DrinkIngredients, MeshRenderer>();
 
 
+    [Space(10)]
+    [Header("Glitch Shit")]
+
+    [SerializeField]
+    private List<MeshRenderer> GlitchIcons;
+
+    public bool ZOOP;
+
+    [SerializeField]
+    private float GlitchDuration;
+
+
+    [SerializeField]
+    private float RandomGlitchTime;
+
+    [SerializeField]
+    private float RandomGlitchIntensity;
+
+    [SerializeField]
+    private float DrinkChangeGlitchIntensity;
+
+    [SerializeField]
+    [ReadOnlyField]
+    private float GlitchTimer;
+
+
     /*
      * 3 Portions
      * Each 'pump' is a portion
@@ -143,6 +169,16 @@ public class DrinkSystemManager : MonoBehaviour
         {
             MenuSwipe(false);
         }
+
+
+        //Glitch
+        GlitchTimer += Time.deltaTime;
+        if (GlitchTimer > RandomGlitchTime)
+        {
+            GlitchTimer -= RandomGlitchTime;
+            StartCoroutine(GlitchEffect(RandomGlitchIntensity));
+        }
+
     }
 
 
@@ -252,6 +288,8 @@ public class DrinkSystemManager : MonoBehaviour
 
         }
         SetMenuMaterial();
+
+        StartCoroutine(GlitchEffect(DrinkChangeGlitchIntensity));
     }
 
     private void SetMenuMaterial()
@@ -278,6 +316,30 @@ public class DrinkSystemManager : MonoBehaviour
 
         }
 
+
+    }
+
+    private IEnumerator GlitchEffect(float intensity)
+    {
+        ZOOP = false;
+        float time = 0;
+
+        while (time < GlitchDuration)
+        {
+
+            foreach (MeshRenderer mesh in GlitchIcons)
+            {
+                mesh.material.SetFloat("_GlitchIntensity", Random.Range(-intensity, intensity));
+            }
+
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        foreach (MeshRenderer mesh in GlitchIcons)
+        {
+            mesh.material.SetFloat("_GlitchIntensity", 0.0f);
+        }
 
     }
 

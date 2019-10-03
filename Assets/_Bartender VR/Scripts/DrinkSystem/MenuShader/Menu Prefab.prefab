@@ -1391,3 +1391,23 @@ MonoBehaviour:
   - {fileID: 2062125524}
   - {fileID: 1923381684}
   - {fileID: 1636396144}
+  GlitchIcons:
+  - {fileID: 721818589489030461}
+  - {fileID: 1148322152}
+  - {fileID: 881016511}
+  - {fileID: 519741887}
+  - {fileID: 998239739}
+  - {fileID: 156951900}
+  - {fileID: 2062125524}
+  - {fileID: 611368416}
+  - {fileID: 1923381684}
+  - {fileID: 1937805972}
+  - {fileID: 1636396144}
+  - {fileID: 1560686360}
+  - {fileID: 481623178}
+  ZOOP: 0
+  GlitchDuration: 0.2
+  RandomGlitchTime: 5
+  RandomGlitchIntensity: 0.2
+  DrinkChangeGlitchIntensity: 0.5
+  GlitchTimer: 0
