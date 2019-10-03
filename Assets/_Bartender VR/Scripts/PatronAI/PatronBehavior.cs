@@ -45,11 +45,28 @@ public class SelectorNode : IBehaviour
 
 //Question Nodes
 
+public class Stage : IBehaviour
+{
+    int stage;
+
+    public Stage(int stage)
+    {
+        this.stage = stage;
+    }
+
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        if (patron.stage == stage)
+            return BehaviourResult.Success;
+        return BehaviourResult.Failure;
+    }
+}
+
 public class AtBar : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        if (patron.atBar)
+        if (Vector3.Distance(patron.transform.position, patron.desiredLocation.transform.position) < 1f)
             return BehaviourResult.Success;
         return BehaviourResult.Failure;
     }
@@ -85,6 +102,7 @@ public class FindSpot : IBehaviour
     {
         var pm = patron.patronManager;
         patron.desiredLocation = pm.spots[pm.patrons.FindIndex(i => { return i == patron; })];
+        patron.agent.SetDestination(patron.desiredLocation.transform.position);
         return BehaviourResult.Success;
     }
 }
@@ -93,16 +111,8 @@ public class SitDown : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
+        patron.stage = 1;
         //animation
-        return BehaviourResult.Success;
-    }
-}
-
-public class GoToDestination : IBehaviour
-{
-    public BehaviourResult DoBehaviour(PatronAI patron)
-    {
-        //path
         return BehaviourResult.Success;
     }
 }
