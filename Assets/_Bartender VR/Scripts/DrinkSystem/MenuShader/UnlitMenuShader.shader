@@ -5,7 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
         _ColorPixel ("Color Pixel", 2D) = "white" {}
 		_PixelScale("Pixel Scale", Float) = 1.0
-		//_BaseBrightness
+		_Saturation("Saturation", Range(0.0,1.0)) = 0.0
 	}
     SubShader
     {
@@ -41,6 +41,7 @@
 			sampler2D _ColorPixel;
 
 			float _PixelScale;
+			float _Saturation;
 
             v2f vert (appdata v)
             {
@@ -56,19 +57,16 @@
 				fixed4 col = {0,0,0,1};
 				fixed4 colorCache;
 
-				fixed4 test = tex2D(_MainTex, i.uv);
+				fixed4 main = tex2D(_MainTex, i.uv);
 
 				col.a = 0;
 
 				colorCache = tex2D(_ColorPixel, i.uv * _PixelScale);
 
-				col = colorCache *  test;
-
-				//col.a = colorCache.a;
+				col = colorCache * main;
 				
-				//i.Emission = col.rgb;
-
-                return col;
+				col.rgb += _Saturation;
+				return col;
             }
             ENDCG
         }
