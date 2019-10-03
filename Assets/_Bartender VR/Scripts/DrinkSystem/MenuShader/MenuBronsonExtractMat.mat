@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MenuMatRed
+  m_Name: MenuBronsonExtractMat
   m_Shader: {fileID: 4800000, guid: 90f23f7b27d059443a17561ab4ba45de, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BluePixel:
-        m_Texture: {fileID: 2800000, guid: 072c3f47f71b8ca43bf61bf58977fe0d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorPixel:
-        m_Texture: {fileID: 2800000, guid: 34f2378c277a6a4468a18568efb1efe3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5ec7c9062da84f24d9269c0d859ec1ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -48,11 +48,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GreenPixel:
-        m_Texture: {fileID: 2800000, guid: 97f58c10f3322e045ad7248dd08110d8, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0fcd124a56e7f004e87c2a3e5e718e94, type: 3}
+        m_Texture: {fileID: 2800000, guid: 46d14bfd25eb827469b4321bd34d4def, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -68,8 +68,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RedPixel:
-        m_Texture: {fileID: 2800000, guid: 34f2378c277a6a4468a18568efb1efe3, type: 3}
-        m_Scale: {x: 100, y: 100}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
@@ -83,8 +83,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PixelScale: 500
-    - _Saturation: 0
+    - _PixelScale: 200
+    - _Saturation: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
