@@ -38,6 +38,7 @@ public class DrinkFillSystem : MonoBehaviour
             Rigidbody.isKinematic = true;
             Shaker.transform.position = Cup.transform.position + new Vector3(0.04f, -0.1f, 0);
             Shaker.transform.rotation = Cup.transform.rotation;
+            Drip.Stop();
 
             if (!DoOnce && IsButtonDown)
             {
@@ -77,6 +78,7 @@ public class DrinkFillSystem : MonoBehaviour
 
     IEnumerator DoFill()
     {
+        Liquid.Play();
         Ve.enabled = false;
         Intble.enabled = false;
         Thrbl.enabled = false;
@@ -85,9 +87,12 @@ public class DrinkFillSystem : MonoBehaviour
 
         yield return new WaitForSeconds(FillTime);
 
-        //Ray put your shit here to fill up, also make a thing to check the ingredient type : )
-        print("Shit filled");
-        Instantiate(FinishedFillingEffect, Shaker.transform.position, Quaternion.identity);
+        if (ShakerInPlace)
+        {
+            //Ray put your shit here to fill up, also make a thing to check the ingredient type : )
+            print("Shit filled");
+            Instantiate(FinishedFillingEffect, Shaker.transform.position, Quaternion.identity);
+        }
 
         Ve.enabled = true;
         Intble.enabled = true;
@@ -96,10 +101,14 @@ public class DrinkFillSystem : MonoBehaviour
         Psr.enabled = true;
         Filled = true;
         DoOnce = false;
+        Liquid.Stop();
+        Drip.Play();
     }
 
     public void ButtonDown()
     {
+        if (DoOnce) return;
+
         //print("Down");
         IsButtonDown = true;
 
@@ -111,6 +120,8 @@ public class DrinkFillSystem : MonoBehaviour
 
     public void ButtonUp()
     {
+        if (DoOnce) return;
+
         //print("Up");
 
         IsButtonDown = false;

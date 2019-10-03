@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
         if(crouchToggle.GetChanged(CrouchHand))
             Crouching = !Crouching;
 
-        Offset.transform.localPosition = new Vector3(-Camera.transform.localPosition.x, 0, -Camera.transform.localPosition.z);
+        //Offset.transform.localPosition = new Vector3(-Camera.transform.localPosition.x, 0, -Camera.transform.localPosition.z);
 
         HeadProxy.transform.position = Camera.transform.position;
         HeadProxy.transform.rotation = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
         }
         else if(rotateV.x == 0) Tick = false;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Rotation), 0.1f);
+        Offset.transform.rotation = Quaternion.Lerp(Offset.transform.rotation, Quaternion.Euler(Rotation), 0.1f);
 
         if (moveV.x > 0.001f) Position += HeadProxy.transform.right * MoveSpeed;
         if (moveV.x < -0.001f) Position -= HeadProxy.transform.right * MoveSpeed;
