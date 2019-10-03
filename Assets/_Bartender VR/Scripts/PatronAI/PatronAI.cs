@@ -9,7 +9,7 @@ public class PatronAI : MonoBehaviour
     public PatronManager patronManager;
     public GameObject desiredLocation;
     public bool orderedDrink, gotDrink;
-    public float speed, counter;
+    public float counter;
     public NavMeshAgent agent;
     public int stage = 0;
 }
