@@ -10,8 +10,11 @@ public class DrinkFillSystem : MonoBehaviour
     public GameObject Shaker;
     public GameObject Cup;
     public GameObject FinishedFillingEffect;
+    public ParticleSystem Liquid;
+    public ParticleSystem Drip;
 
     public Rigidbody Rigidbody;
+
     public Valve.VR.InteractionSystem.VelocityEstimator Ve;
     public Valve.VR.InteractionSystem.Interactable Intble;
     public Valve.VR.InteractionSystem.Throwable Thrbl;
@@ -20,6 +23,8 @@ public class DrinkFillSystem : MonoBehaviour
 
     private bool DoOnce = false;
     private bool ShakerInPlace = false;
+    private bool IsButtonDown = false;
+    private bool Filled = false;
 
     void Start()
     {
@@ -28,25 +33,35 @@ public class DrinkFillSystem : MonoBehaviour
 
     void Update()
     {
-        if(DoOnce)
+        if (!ShakerInHand && ShakerInPlace && !Filled)
         {
             Rigidbody.isKinematic = true;
-            Shaker.transform.position = Cup.transform.position;
-            DoOnce = false;
-            StartCoroutine(DoFill());
+            Shaker.transform.position = Cup.transform.position + new Vector3(0.04f, -0.1f, 0);
+            Shaker.transform.rotation = Cup.transform.rotation;
+
+            if (!DoOnce && IsButtonDown)
+            {
+                DoOnce = true;
+                StartCoroutine(DoFill());
+            }
         }
-        else Cup.SetActive(ShakerInHand && !DoOnce);
+
+        if (!ShakerInPlace) Filled = false;
+
+        Cup.SetActive(ShakerInHand && !DoOnce);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Shaker")
+            ShakerInPlace = true;
+    }
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Shaker")
         {
-            if (!ShakerInHand && !DoOnce)
-            {
-                DoOnce = true;
-                ShakerInPlace = true;
-            }
+            ShakerInPlace = false;
+            DoOnce = false;
         }
     }
 
@@ -62,8 +77,6 @@ public class DrinkFillSystem : MonoBehaviour
 
     IEnumerator DoFill()
     {
-        Rigidbody.isKinematic = true;
-        Shaker.transform.position = Cup.transform.position;
         Ve.enabled = false;
         Intble.enabled = false;
         Thrbl.enabled = false;
@@ -81,5 +94,28 @@ public class DrinkFillSystem : MonoBehaviour
         Thrbl.enabled = true;
         IHE.enabled = true;
         Psr.enabled = true;
+        Filled = true;
+        DoOnce = false;
+    }
+
+    public void ButtonDown()
+    {
+        //print("Down");
+        IsButtonDown = true;
+
+        if(!ShakerInHand && ShakerInPlace)
+            Liquid.Stop();
+        else
+            Liquid.Play();
+    }
+
+    public void ButtonUp()
+    {
+        //print("Up");
+
+        IsButtonDown = false;
+
+        Liquid.Stop();
+        Drip.Play();
     }
 }
