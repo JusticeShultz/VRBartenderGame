@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
     public Vector2 ForwardBackwardMinMax;
 
     private Vector3 Rotation = Vector3.zero;
-    private Vector3 Position = new Vector3(0, 0.626f, 0);
+    private Vector3 Position = new Vector3(0, 0, 0);
 
     private bool Tick = false;
     private bool Crouching = false;
