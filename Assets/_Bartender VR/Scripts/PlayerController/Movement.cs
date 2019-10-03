@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
         }
         else if(rotateV.x == 0) Tick = false;
 
-        Offset.transform.rotation = Quaternion.Lerp(Offset.transform.rotation, Quaternion.Euler(Rotation), 0.1f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Rotation), 0.1f);
 
         if (moveV.x > 0.001f) Position += HeadProxy.transform.right * MoveSpeed;
         if (moveV.x < -0.001f) Position -= HeadProxy.transform.right * MoveSpeed;
