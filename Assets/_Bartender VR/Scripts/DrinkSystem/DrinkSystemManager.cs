@@ -343,6 +343,16 @@ public class DrinkSystemManager : MonoBehaviour
 
     }
 
+    public void MenuSwipeRight()
+    {
+        MenuSwipe(true);
+    }
+
+    public void MenuSwipeLeft()
+    {
+        MenuSwipe(false);
+    }
+
 
     ////Add Manual Ingredient
 
