@@ -26,6 +26,12 @@ public class DrinkFillSystem : MonoBehaviour
     private bool IsButtonDown = false;
     private bool Filled = false;
 
+    [SerializeField]
+    private DrinkSystemManager drinkSystem;
+
+    [SerializeField]
+    private DrinkSystemManager.DrinkIngredients ingredientOnTap;
+
     void Start()
     {
         ShakerInHand = false;
@@ -89,7 +95,7 @@ public class DrinkFillSystem : MonoBehaviour
 
         if (ShakerInPlace)
         {
-            //Ray put your shit here to fill up, also make a thing to check the ingredient type : )
+            drinkSystem.AddIngredient(ingredientOnTap);
             print("Shit filled");
             Instantiate(FinishedFillingEffect, Shaker.transform.position, Quaternion.identity);
         }

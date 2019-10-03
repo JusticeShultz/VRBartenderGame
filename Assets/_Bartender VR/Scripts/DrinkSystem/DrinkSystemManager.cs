@@ -282,37 +282,37 @@ public class DrinkSystemManager : MonoBehaviour
     }
 
 
-    //Add Manual Ingredient
+    ////Add Manual Ingredient
 
-    public void AddIce()
-    {
-        AddIngredient(DrinkIngredients.Ice);
-    }
+    //public void AddIce()
+    //{
+    //    AddIngredient(DrinkIngredients.Ice);
+    //}
 
-    public void AddAdelhyde()
-    {
-        AddIngredient(DrinkIngredients.Adelhyde);
-    }
+    //public void AddAdelhyde()
+    //{
+    //    AddIngredient(DrinkIngredients.Adelhyde);
+    //}
 
-    public void AddPowderedDelta()
-    {
-        AddIngredient(DrinkIngredients.PowderedDelta);
-    }
+    //public void AddPowderedDelta()
+    //{
+    //    AddIngredient(DrinkIngredients.PowderedDelta);
+    //}
 
-    public void AddBronsonExtract()
-    {
-        AddIngredient(DrinkIngredients.BronsonExtract);
-    }
+    //public void AddBronsonExtract()
+    //{
+    //    AddIngredient(DrinkIngredients.BronsonExtract);
+    //}
 
-    public void AddFlanergide()
-    {
-        AddIngredient(DrinkIngredients.Flanergide);
-    }
+    //public void AddFlanergide()
+    //{
+    //    AddIngredient(DrinkIngredients.Flanergide);
+    //}
 
-    public void AddKarmotrine()
-    {
-        AddIngredient(DrinkIngredients.Karmotrine);
-    }
+    //public void AddKarmotrine()
+    //{
+    //    AddIngredient(DrinkIngredients.Karmotrine);
+    //}
 
 
 }
