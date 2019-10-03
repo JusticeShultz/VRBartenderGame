@@ -92,9 +92,43 @@ public class GotDrink : IBehaviour
     }
 }
 
+public class WaitedLongEnough : IBehaviour
+{
+    float amount;
+
+    public WaitedLongEnough(float amount)
+    {
+        this.amount = amount;
+    }
+
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        if (patron.counter >= amount)
+            return BehaviourResult.Success;
+        return BehaviourResult.Failure;
+    }
+}
+
 //End Question Nodes
 
 //Action Nodes
+
+public class SwitchState : IBehaviour
+{
+    int state;
+
+    public SwitchState(int state)
+    {
+        this.state = state;
+    }
+
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        patron.stage = state;
+        patron.counter = 0f;
+        return BehaviourResult.Success;
+    }
+}
 
 public class FindSpot : IBehaviour
 {
@@ -111,7 +145,6 @@ public class SitDown : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        patron.stage = 1;
         //animation
         return BehaviourResult.Success;
     }
@@ -122,6 +155,37 @@ public class OrderDrink : IBehaviour
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
         //order func
+        Debug.Log("Order");
+        return BehaviourResult.Success;
+    }
+}
+
+public class HideOrder : IBehaviour
+{
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        //hide order bubble
+        Debug.Log("Hide");
+        return BehaviourResult.Success;
+    }
+}
+
+public class Idle : IBehaviour
+{
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        patron.counter += Time.deltaTime;
+        return BehaviourResult.Success;
+    }
+}
+
+public class Leave : IBehaviour
+{
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        //leave
+        patron.desiredLocation = patron.patronManager.exitLocation;
+        patron.agent.destination = patron.desiredLocation.transform.position;
         return BehaviourResult.Success;
     }
 }
