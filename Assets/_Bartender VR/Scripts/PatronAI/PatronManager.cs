@@ -15,7 +15,7 @@ public class PatronManager : MonoBehaviour
     public static float thirstThreshold;
 
     [Header("Required Fields")]
-    [SerializeField] public List<GameObject> spots;
+    [SerializeField] public List<GameObject> spots, coasters;
     [SerializeField] public GameObject spawnLocation, exitLocation;
 
     [Header("Generated Fields")]
@@ -36,28 +36,42 @@ public class PatronManager : MonoBehaviour
     void Update()
     {
         currTime += Time.deltaTime;
-        if (patrons.Count < minPatrons) { patrons.Add(GeneratePatron()); }
+        while (patrons.Count < minPatrons) { patrons.Add(GeneratePatron()); }
 
         if (currTime >= timeBetweenGeneration)
         {
             currTime = 0f;
-            if (Random.Range(0f, 1f) <= patronGenerationChance && patrons.Count < maxPatrons)
+            if (Random.Range(0f, 1f) <= patronGenerationChance)
             {
-                patrons.Add(GeneratePatron());
+                if (patrons.Contains(null))
+                {
+                    for(int i = 0; i < patrons.Count; i++)
+                    {
+                        if(patrons[i] == null)
+                        {
+                            patrons[i] = GeneratePatron();
+                        }
+                    }
+                } else if(patrons.Count < maxPatrons)
+                {
+                    patrons.Add(GeneratePatron());
+                }
             }
         }
-
-        foreach(PatronAI p in patrons) { root.DoBehaviour(p); }
+        for (int i = 0; i < patrons.Count; i++) { if (patrons[i] != null) { root.DoBehaviour(patrons[i]); } }
     }
 
     PatronAI GeneratePatron()
     {
         GameObject body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
         body.transform.position = spawnLocation.transform.position;
+        body.layer = 11;
         PatronAI p = body.AddComponent<PatronAI>();
         p.patronManager = this;
         p.agent = body.AddComponent<NavMeshAgent>();
         p.agent.speed = patronSpeed;
+        p.agent.autoRepath = false;
+        p.agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         return p;
     }
 
@@ -71,25 +85,25 @@ public class PatronManager : MonoBehaviour
     IBehaviour PopulateBehaviours()
     {
         var root = new SelectorNode();
-        var seqStates = new SequenceNode[8];
+        var seqStates = new SequenceNode[10];
         for(int i = 0; i < seqStates.Length; i++) { seqStates[i] = new SequenceNode(); }
-        var stateNodes = new State[8];
-        var switchNodes = new SwitchState[8];
+        var stateNodes = new State[10];
+        var switchNodes = new SwitchState[10];
 
         //root
         root.childBehaviors = PopulateBranch(seqStates[0],
                                              seqStates[1],
                                              seqStates[2],
                                              seqStates[3],
-                                             seqStates[4],
                                              seqStates[5],
                                              seqStates[6],
-                                             seqStates[7]);
+                                             seqStates[7],
+                                             seqStates[8]);
 
         //state 0
         stateNodes[0] = new State(0);
         var findSpot = new FindSpot();
-        var atBar = new AtBar();
+        var atBar = new ThereYet();
         var sitDown = new SitDown();
         switchNodes[0] = new SwitchState(1);
         seqStates[0].childBehaviors = PopulateBranch(stateNodes[0], findSpot, atBar, sitDown, switchNodes[0]);
@@ -109,9 +123,9 @@ public class PatronManager : MonoBehaviour
 
         //state 3
         stateNodes[3] = new State(3);
-        var dbg1 = new DebugNode("Debug 3");
+        //idle
         var sel0 = new SelectorNode();
-        seqStates[3].childBehaviors = PopulateBranch(stateNodes[3], dbg1, sel0);
+        seqStates[3].childBehaviors = PopulateBranch(stateNodes[3], idle, sel0);
 
         //sel0
         var seq0 = new SequenceNode();
@@ -119,40 +133,53 @@ public class PatronManager : MonoBehaviour
         sel0.childBehaviors = PopulateBranch(seq0, seq1);
 
         //seq0
-        //idle
-        var dbg3 = new DebugNode("Debug 3.5 switch to 4");
         var gotDrink = new GotDrink();
         switchNodes[3] = new SwitchState(4);
-        seq0.childBehaviors = PopulateBranch(dbg3, idle, gotDrink, switchNodes[3]);
+        seq0.childBehaviors = PopulateBranch(gotDrink, switchNodes[3]);
 
         //seq1
-        var dbg2 = new DebugNode("Debug 3.5 switch to 5");
         var wait1 = new WaitedLongEnough(idleTimes[1]);
         switchNodes[4] = new SwitchState(5);
-        seq1.childBehaviors = PopulateBranch(dbg2, wait1, switchNodes[4]);
+        seq1.childBehaviors = PopulateBranch(wait1, switchNodes[4]);
 
         //state4
         //drink
 
         //state 5
         stateNodes[5] = new State(5);
-        var dbg = new DebugNode("Debug 5");
         var hideOrder = new HideOrder();
         switchNodes[5] = new SwitchState(6);
-        seqStates[5].childBehaviors = PopulateBranch(stateNodes[5], dbg, hideOrder, switchNodes[5]);
+        seqStates[5].childBehaviors = PopulateBranch(stateNodes[5], hideOrder, switchNodes[5]);
 
         //state 6
         stateNodes[6] = new State(6);
         //idle
-        var q3 = new WaitedLongEnough(idleTimes[2]);
+        var sel1 = new SelectorNode();
+        seqStates[6].childBehaviors = PopulateBranch(stateNodes[6], idle, sel1);
+
+        //sel1
+        //seq0
+        var seq2 = new SequenceNode();
+        sel1.childBehaviors = PopulateBranch(seq0, seq2);
+
+        //seq2
+        var wait2 = new WaitedLongEnough(idleTimes[2]);
         switchNodes[6] = new SwitchState(7);
-        seqStates[6].childBehaviors = PopulateBranch(stateNodes[6], idle, q3, switchNodes[6]);
+        seq2.childBehaviors = PopulateBranch(wait2, switchNodes[6]);
 
         //state 7
         stateNodes[7] = new State(7);
         var leave = new Leave();
         switchNodes[7] = new SwitchState(8);
         seqStates[7].childBehaviors = PopulateBranch(stateNodes[7], leave, switchNodes[7]);
+
+        //state 8
+        stateNodes[8] = new State(8);
+        var outside = new ThereYet();
+        var die = new Die();
+        switchNodes[8] = new SwitchState(9);
+        seqStates[8].childBehaviors = PopulateBranch(stateNodes[8], outside, die, switchNodes[8]);
+
 
         return root;
     }
