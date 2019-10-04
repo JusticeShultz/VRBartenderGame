@@ -50,8 +50,8 @@ public class Movement : MonoBehaviour
         HeadProxy.transform.position = Camera.transform.position;
         HeadProxy.transform.rotation = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
 
-        Vector2 moveV = joystickAction.GetAxis(MoveHand);
-        Vector2 rotateV = joystickAction.GetAxis(RotateHand);
+        Vector2 moveV = new Vector3(Vector3.Normalize(new Vector3(joystickAction.GetAxis(MoveHand).x, joystickAction.GetAxis(MoveHand).y, 0)).x, Vector3.Normalize(new Vector3(joystickAction.GetAxis(MoveHand).x, joystickAction.GetAxis(MoveHand).y, 0)).y);
+        Vector2 rotateV = new Vector3(Vector3.Normalize(new Vector3(joystickAction.GetAxis(RotateHand).x, joystickAction.GetAxis(RotateHand).y, 0)).x, Vector3.Normalize(new Vector3(joystickAction.GetAxis(RotateHand).x, joystickAction.GetAxis(RotateHand).y, 0)).y); ;
 
         if (rotateV.x >= 0.001f && !Tick)
         {
