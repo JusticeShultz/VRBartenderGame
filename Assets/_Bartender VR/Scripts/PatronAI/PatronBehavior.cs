@@ -78,7 +78,7 @@ public class State : IBehaviour
     }
 }
 
-public class AtBar : IBehaviour
+public class ThereYet : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
@@ -194,6 +194,18 @@ public class Leave : IBehaviour
         //leave
         patron.desiredLocation = patron.patronManager.exitLocation;
         patron.agent.destination = patron.desiredLocation.transform.position;
+        return BehaviourResult.Success;
+    }
+}
+
+public class Die : IBehaviour
+{
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        var pm = patron.patronManager;
+        pm.patrons[pm.patrons.FindIndex(i => { return i == patron; })] = null;
+        GameObject.Destroy(patron.gameObject);
+        PatronAI.Destroy(patron);
         return BehaviourResult.Success;
     }
 }
