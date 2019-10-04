@@ -8,8 +8,7 @@ public class PatronAI : MonoBehaviour
     public DrinkSystemManager.DrinkNames desiredDrink;
     public PatronManager patronManager;
     public GameObject desiredLocation;
-    public bool orderedDrink, gotDrink;
     public float counter;
     public NavMeshAgent agent;
-    public int stage = 0;
+    public int state = 0;
 }

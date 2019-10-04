@@ -41,22 +41,38 @@ public class SelectorNode : IBehaviour
     }
 }
 
-//End Special Nodes
-
-//Question Nodes
-
-public class Stage : IBehaviour
+public class DebugNode : IBehaviour
 {
-    int stage;
+    string text;
 
-    public Stage(int stage)
+    public DebugNode(string text)
     {
-        this.stage = stage;
+        this.text = text;
     }
 
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        if (patron.stage == stage)
+        Debug.Log(text);
+        return BehaviourResult.Success;
+    }
+}
+
+//End Special Nodes
+
+//Question Nodes
+
+public class State : IBehaviour
+{
+    int state;
+
+    public State(int state)
+    {
+        this.state = state;
+    }
+
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        if (patron.state == state)
             return BehaviourResult.Success;
         return BehaviourResult.Failure;
     }
@@ -72,21 +88,12 @@ public class AtBar : IBehaviour
     }
 }
 
-public class OrderedDrink : IBehaviour
-{
-    public BehaviourResult DoBehaviour(PatronAI patron)
-    {
-        if (patron.orderedDrink)
-            return BehaviourResult.Success;
-        return BehaviourResult.Failure;
-    }
-}
 
 public class GotDrink : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        if (patron.gotDrink)
+        if (false)
             return BehaviourResult.Success;
         return BehaviourResult.Failure;
     }
@@ -124,8 +131,9 @@ public class SwitchState : IBehaviour
 
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        patron.stage = state;
+        patron.state = state;
         patron.counter = 0f;
+        Debug.Log("State change to " + state);
         return BehaviourResult.Success;
     }
 }
