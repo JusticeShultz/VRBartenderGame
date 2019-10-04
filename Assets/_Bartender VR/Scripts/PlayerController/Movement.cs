@@ -67,10 +67,10 @@ public class Movement : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Rotation), 0.1f);
 
-        if (moveV.x > 0.001f) Position += HeadProxy.transform.right * MoveSpeed;
-        if (moveV.x < -0.001f) Position -= HeadProxy.transform.right * MoveSpeed;
-        if (moveV.y > 0.001f) Position += HeadProxy.transform.forward * MoveSpeed;
-        if (moveV.y < -0.001f) Position -= HeadProxy.transform.forward * MoveSpeed;
+        if (moveV.x > 0.001f) Position += HeadProxy.transform.right * Time.deltaTime * MoveSpeed;
+        if (moveV.x < -0.001f) Position -= HeadProxy.transform.right * Time.deltaTime * MoveSpeed;
+        if (moveV.y > 0.001f) Position += HeadProxy.transform.forward * Time.deltaTime * MoveSpeed;
+        if (moveV.y < -0.001f) Position -= HeadProxy.transform.forward * Time.deltaTime * MoveSpeed;
 
         if(!Crouching)
              Position = new Vector3(Mathf.Clamp(Position.x, LeftRightMinMax.x, LeftRightMinMax.y), StandingY, Mathf.Clamp(Position.z, ForwardBackwardMinMax.x, ForwardBackwardMinMax.y));
