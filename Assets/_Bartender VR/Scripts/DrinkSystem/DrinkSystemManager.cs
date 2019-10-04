@@ -161,11 +161,11 @@ public class DrinkSystemManager : MonoBehaviour
      */
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             MenuSwipe(true);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             MenuSwipe(false);
         }

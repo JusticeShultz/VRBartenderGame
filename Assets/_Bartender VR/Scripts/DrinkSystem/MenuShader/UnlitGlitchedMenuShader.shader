@@ -61,7 +61,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
 				fixed4 col = {0,0,0,1};
-				fixed4 colorCache;
+				fixed4 colorCache;	
 				
 				float glitchValue = tex2D(_GlitchMap, i.uv).r;
 
