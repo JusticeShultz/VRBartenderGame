@@ -258,6 +258,8 @@ public class DrinkSystemManager : MonoBehaviour
 
     public void MenuSwipe(bool isToRight)
     {
+        GlitchTimer = 0.0f;
+
         if (isToRight == true)
         {
             DrinkNames[] Arr = (DrinkNames[])Enum.GetValues(typeof(DrinkNames));
