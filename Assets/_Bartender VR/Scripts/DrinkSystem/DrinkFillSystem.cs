@@ -35,6 +35,9 @@ public class DrinkFillSystem : MonoBehaviour
     [SerializeField]
     private DrinkSystemManager.DrinkIngredients ingredientOnTap;
 
+    [SerializeField]
+    private HandMenu handMenu;
+
     void Start()
     {
         ShakerInHand = false;
@@ -99,6 +102,7 @@ public class DrinkFillSystem : MonoBehaviour
         if (ShakerInPlace)
         {
             drinkSystem.AddIngredient(ingredientOnTap);
+            handMenu.SetHandMenuMaterial();
             print("Shit filled");
             Instantiate(FinishedFillingEffect, Shaker.transform.position, Quaternion.identity);
         }
