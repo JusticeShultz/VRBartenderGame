@@ -53,7 +53,6 @@ public class DrinkSystemManager : MonoBehaviour
 
     private Dictionary<DrinkNames, IngredientSO> drinkList = new Dictionary<DrinkNames, IngredientSO>();
 
-    [HideInInspector]
     public Dictionary<DrinkNames, IngredientSO> DrinkList
     {
         get
@@ -65,6 +64,15 @@ public class DrinkSystemManager : MonoBehaviour
 
     [SerializeField] [ReadOnlyField]
     private List<DrinkIngredients> myDrink = new List<DrinkIngredients>();
+
+    public List<DrinkIngredients> MyDrink
+    {
+        get
+        {
+            return myDrink;
+        }
+    }
+
     [SerializeField] [ReadOnlyField]
     private bool myDrinkIsShaken = false;
 
@@ -113,7 +121,7 @@ public class DrinkSystemManager : MonoBehaviour
     [ReadOnlyField]
     private float GlitchTimer;
 
-
+    
     /*
      * 3 Portions
      * Each 'pump' is a portion
