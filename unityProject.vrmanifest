@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrbartendergame.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\s189081\\BartenderVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\Justice\\Desktop\\BartenderGame\\VRBartenderGame\\actions.json",
       "strings": {
         "en_us": {
           "name": "VRBartenderGame [Testing]"

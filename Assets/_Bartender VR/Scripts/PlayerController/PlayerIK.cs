@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerIK : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float YOffset = 0f;
+    public GameObject Camera;
+    public GameObject Body;
+    
     void Update()
     {
-        
+        Body.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y + YOffset, Camera.transform.position.z);
     }
 }
