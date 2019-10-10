@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
         if(crouchToggle.GetChanged(CrouchHand))
             Crouching = !Crouching;
 
-        //Offset.transform.localPosition = new Vector3(-Camera.transform.localPosition.x, 0, -Camera.transform.localPosition.z);
+        Offset.transform.localPosition = new Vector3(-Camera.transform.localPosition.x, 0, -Camera.transform.localPosition.z);
 
         HeadProxy.transform.position = Camera.transform.position;
         HeadProxy.transform.rotation = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
