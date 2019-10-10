@@ -74,9 +74,10 @@ public class PatronManager : MonoBehaviour
         nav.speed = patronSpeed;
         nav.autoRepath = false;
         nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        //nav.Warp(patron.transform.position);
+        nav.Warp(patron.transform.position);
         var ani = patron.GetComponent<Animator>();
         agent.animator = ani;
+        agent.desiredDrink = (DrinkSystemManager.DrinkNames)Random.Range(0, 11);
         return agent;
     }
 

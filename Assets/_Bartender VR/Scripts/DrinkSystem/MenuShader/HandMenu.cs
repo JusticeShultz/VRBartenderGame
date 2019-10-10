@@ -50,7 +50,7 @@ public class HandMenu : MonoBehaviour
     public void SetHandMenuMaterial()
     {
         //Change the Menu Drink Icon
-        //MenuDrinkRenderer.materials[0].SetTexture("_MainTex", DrinkManager.DrinkList.[DrinkOnMenu].DrinkImg);
+
         if (DrinkManager.MyDrink.Count >= 5)
         {
             MenuDrinkRenderer.gameObject.SetActive(true);
@@ -78,15 +78,15 @@ public class HandMenu : MonoBehaviour
             }
 
 
-            //try
-            //{
-            //    MenuIngredientsMesh[ingredient].material = ServingCountMat[ingredientsInDrink];
-            //}
-            //catch (KeyNotFoundException ass)
-            //{
-            //    Debug.Log($"{ingredient} and {ingredientsInDrink}");
-            //    throw;
-            //}
+            try
+            {
+                MenuIngredientsMesh[ingredient].material = ServingCountMat[ingredientsInDrink];
+            }
+            catch (KeyNotFoundException ass)
+            {
+                Debug.Log($"{ingredient} and {ingredientsInDrink}");
+                throw;
+            }
         }
     }
 }
