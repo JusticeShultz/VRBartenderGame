@@ -15,8 +15,9 @@ public class PatronManager : MonoBehaviour
     public static float thirstThreshold;
 
     [Header("Required Fields")]
-    [SerializeField] public List<GameObject> spots, coasters;
-    [SerializeField] public GameObject spawnLocation, exitLocation;
+    [SerializeField] public List<GameObject> spots;
+    [SerializeField] public List<GameObject> coasters;
+    [SerializeField] public GameObject spawnLocation, exitLocation, patronPrefab;
 
     [Header("Generated Fields")]
     [SerializeField] public List<PatronAI> patrons;
@@ -63,16 +64,26 @@ public class PatronManager : MonoBehaviour
 
     PatronAI GeneratePatron()
     {
-        GameObject body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        body.transform.position = spawnLocation.transform.position;
-        body.layer = 11;
-        PatronAI p = body.AddComponent<PatronAI>();
-        p.patronManager = this;
-        p.agent = body.AddComponent<NavMeshAgent>();
-        p.agent.speed = patronSpeed;
-        p.agent.autoRepath = false;
-        p.agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        return p;
+        var patron = Instantiate(patronPrefab);
+        patron.transform.position = spawnLocation.transform.position;
+        patron.layer = 11;
+        var agent = patron.GetComponent<PatronAI>();
+        agent.patronManager = this;
+        var nav = patron.GetComponent<NavMeshAgent>();
+        agent.navAgent = nav;
+        nav.speed = patronSpeed;
+        nav.autoRepath = false;
+        nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        //nav.Warp(patron.transform.position);
+        var ani = patron.GetComponent<Animator>();
+        agent.animator = ani;
+        return agent;
+    }
+
+    public void SeatMe(PatronAI patron)
+    {
+        patron.transform.position = spots[patrons.IndexOf(patron)].transform.position;
+        patron.transform.rotation = spots[patrons.IndexOf(patron)].transform.rotation;
     }
 
     private List<IBehaviour> PopulateBranch(params IBehaviour[] children)

@@ -144,7 +144,7 @@ public class FindSpot : IBehaviour
     {
         var pm = patron.patronManager;
         patron.desiredLocation = pm.spots[pm.patrons.FindIndex(i => { return i == patron; })];
-        patron.agent.SetDestination(patron.desiredLocation.transform.position);
+        patron.navAgent.SetDestination(patron.desiredLocation.transform.position);
         return BehaviourResult.Success;
     }
 }
@@ -153,7 +153,9 @@ public class SitDown : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        //animation
+        patron.navAgent.enabled = false;
+        patron.animator.SetBool("Seated", true);
+        patron.patronManager.SeatMe(patron);
         return BehaviourResult.Success;
     }
 }
@@ -191,9 +193,10 @@ public class Leave : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        //leave
+        patron.animator.SetBool("Seated", false);
+        patron.navAgent.enabled = true;
         patron.desiredLocation = patron.patronManager.exitLocation;
-        patron.agent.destination = patron.desiredLocation.transform.position;
+        patron.navAgent.destination = patron.desiredLocation.transform.position;
         return BehaviourResult.Success;
     }
 }
