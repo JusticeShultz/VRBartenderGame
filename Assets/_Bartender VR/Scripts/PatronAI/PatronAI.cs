@@ -9,6 +9,7 @@ public class PatronAI : MonoBehaviour
     public PatronManager patronManager;
     public GameObject desiredLocation;
     public float counter;
-    public NavMeshAgent agent;
+    public NavMeshAgent navAgent;
+    public Animator animator;
     public int state = 0;
 }
