@@ -103,7 +103,15 @@ public class PatronManager : MonoBehaviour
 
     public void ConfirmDrink(int n)
     {
+        if (dsm.ValidateDrink(patrons[n].desiredDrink))
+        {
         patrons[n].gotDrink = true;
+        }
+        else
+        {
+            patrons[n].state = 7;
+        }
+
         return;
     }
 
