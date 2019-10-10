@@ -78,15 +78,15 @@ public class HandMenu : MonoBehaviour
             }
 
 
-            try
-            {
-                MenuIngredientsMesh[ingredient].material = ServingCountMat[ingredientsInDrink];
-            }
-            catch (KeyNotFoundException ass)
-            {
-                Debug.Log($"{ingredient} and {ingredientsInDrink}");
-                throw;
-            }
+            //try
+            //{
+            //    MenuIngredientsMesh[ingredient].material = ServingCountMat[ingredientsInDrink];
+            //}
+            //catch (KeyNotFoundException ass)
+            //{
+            //    Debug.Log($"{ingredient} and {ingredientsInDrink}");
+            //    throw;
+            //}
         }
     }
 }
