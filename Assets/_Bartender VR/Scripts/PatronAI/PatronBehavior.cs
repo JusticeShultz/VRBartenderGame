@@ -93,7 +93,7 @@ public class GotDrink : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        if (false)
+        if (patron.gotDrink)
             return BehaviourResult.Success;
         return BehaviourResult.Failure;
     }
@@ -179,6 +179,15 @@ public class HideOrder : IBehaviour
         var pm = patron.patronManager;
         pm.DrinkRequestIcons[pm.patrons.FindIndex(i => { return i == patron; })].gameObject.SetActive(false);
         Debug.Log("Hide");
+        return BehaviourResult.Success;
+    }
+}
+
+public class Drink : IBehaviour
+{
+    public BehaviourResult DoBehaviour(PatronAI patron)
+    {
+        patron.animator.SetTrigger("DrinkSomething");
         return BehaviourResult.Success;
     }
 }

@@ -12,4 +12,5 @@ public class PatronAI : MonoBehaviour
     public NavMeshAgent navAgent;
     public Animator animator;
     public int state = 0;
+    public bool gotDrink;
 }
