@@ -164,7 +164,9 @@ public class OrderDrink : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        //order func
+        var pm = patron.patronManager;
+        pm.DrinkRequestIcons[pm.patrons.FindIndex(i => { return i == patron; })].material.SetTexture("_MainTex", pm.dsm.DrinkList[patron.desiredDrink].DrinkImg);
+        pm.DrinkRequestIcons[pm.patrons.FindIndex(i => { return i == patron; })].gameObject.SetActive(true);
         Debug.Log("Order");
         return BehaviourResult.Success;
     }
@@ -174,7 +176,8 @@ public class HideOrder : IBehaviour
 {
     public BehaviourResult DoBehaviour(PatronAI patron)
     {
-        //hide order bubble
+        var pm = patron.patronManager;
+        pm.DrinkRequestIcons[pm.patrons.FindIndex(i => { return i == patron; })].gameObject.SetActive(false);
         Debug.Log("Hide");
         return BehaviourResult.Success;
     }

@@ -25,6 +25,12 @@ public class PatronManager : MonoBehaviour
     float currTime;
     IBehaviour root;
 
+    [Space(10)]
+    [Header("Request Drink Shit")]
+
+    public List<MeshRenderer> DrinkRequestIcons;
+    public DrinkSystemManager dsm;
+
     void Start()
     {
         if (spots == null) { Debug.LogError("Spots cannot be empty"); }
