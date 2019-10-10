@@ -31,11 +31,13 @@ public class Coaster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CupInRange = true;
+        if(other.name == "Shaker")
+            CupInRange = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        CupInRange = false;
+        if (other.name == "Shaker")
+            CupInRange = false;
     }
 }
