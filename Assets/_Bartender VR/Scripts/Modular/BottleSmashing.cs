@@ -12,7 +12,8 @@ public class BottleSmashing : MonoBehaviour
     {
         if (estimator.GetAccelerationEstimate().magnitude >= DestroySensitivity)
         {
-            Instantiate(DestroyedState, transform.position, transform.rotation);
+            GameObject toCreate = Instantiate(DestroyedState, transform.position, transform.rotation);
+            toCreate.transform.localScale = transform.localScale;
             Destroy(gameObject);
         }
     }

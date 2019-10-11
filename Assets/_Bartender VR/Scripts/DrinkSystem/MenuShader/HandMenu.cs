@@ -40,6 +40,8 @@ public class HandMenu : MonoBehaviour
 
     void Start()
     {
+        shakerIcon.SetActive(false);
+
         for (int i = 0; i < ServingMesh.Count; i++)
         {
             MenuIngredientsMesh.Add((DrinkSystemManager.DrinkIngredients)i, ServingMesh[i]);
