@@ -25,6 +25,12 @@ public class PatronManager : MonoBehaviour
     float currTime;
     IBehaviour root;
 
+    [Space(10)]
+    [Header("Request Drink Shit")]
+
+    public List<MeshRenderer> DrinkRequestIcons;
+    public DrinkSystemManager dsm;
+
     void Start()
     {
         if (spots == null) { Debug.LogError("Spots cannot be empty"); }
@@ -85,6 +91,7 @@ public class PatronManager : MonoBehaviour
     {
         patron.transform.position = spots[patrons.IndexOf(patron)].transform.position;
         patron.transform.rotation = spots[patrons.IndexOf(patron)].transform.rotation;
+        return;
     }
 
     private List<IBehaviour> PopulateBranch(params IBehaviour[] children)
@@ -92,6 +99,20 @@ public class PatronManager : MonoBehaviour
         var t = new List<IBehaviour>();
         foreach (IBehaviour p in children) t.Add(p);
         return t;
+    }
+
+    public void ConfirmDrink(int n)
+    {
+        if (dsm.ValidateDrink(patrons[n].desiredDrink))
+        {
+        patrons[n].gotDrink = true;
+        }
+        else
+        {
+            patrons[n].state = 7;
+        }
+
+        return;
     }
 
     IBehaviour PopulateBehaviours()
@@ -107,18 +128,20 @@ public class PatronManager : MonoBehaviour
                                              seqStates[1],
                                              seqStates[2],
                                              seqStates[3],
+                                             seqStates[4],
                                              seqStates[5],
                                              seqStates[6],
                                              seqStates[7],
-                                             seqStates[8]);
+                                             seqStates[8],
+                                             seqStates[9]);
 
         //state 0
         stateNodes[0] = new State(0);
         var findSpot = new FindSpot();
-        var atBar = new ThereYet();
+        var thereYet = new ThereYet();
         var sitDown = new SitDown();
         switchNodes[0] = new SwitchState(1);
-        seqStates[0].childBehaviors = PopulateBranch(stateNodes[0], findSpot, atBar, sitDown, switchNodes[0]);
+        seqStates[0].childBehaviors = PopulateBranch(stateNodes[0], findSpot, thereYet, sitDown, switchNodes[0]);
 
         //state 1
         stateNodes[1] = new State(1);
@@ -155,11 +178,22 @@ public class PatronManager : MonoBehaviour
         seq1.childBehaviors = PopulateBranch(wait1, switchNodes[4]);
 
         //state4
-        //drink
+        stateNodes[4] = new State(4);
+        var drink = new Drink();
+        var hideOrder = new HideOrder();
+        switchNodes[4] = new SwitchState(9);
+        seqStates[4].childBehaviors = PopulateBranch(stateNodes[4], drink, hideOrder, switchNodes[4]);
+
+        //state 9
+        stateNodes[9] = new State(9);
+        //idle
+        var wait3 = new WaitedLongEnough(idleTimes[3]);
+        switchNodes[9] = new SwitchState(7);
+        seqStates[9].childBehaviors = PopulateBranch(stateNodes[9], idle, wait3, switchNodes[9]);
 
         //state 5
         stateNodes[5] = new State(5);
-        var hideOrder = new HideOrder();
+        //hideorder
         switchNodes[5] = new SwitchState(6);
         seqStates[5].childBehaviors = PopulateBranch(stateNodes[5], hideOrder, switchNodes[5]);
 
@@ -187,10 +221,10 @@ public class PatronManager : MonoBehaviour
 
         //state 8
         stateNodes[8] = new State(8);
-        var outside = new ThereYet();
+        //thereYet
         var die = new Die();
         switchNodes[8] = new SwitchState(9);
-        seqStates[8].childBehaviors = PopulateBranch(stateNodes[8], outside, die, switchNodes[8]);
+        seqStates[8].childBehaviors = PopulateBranch(stateNodes[8], thereYet, die, switchNodes[8]);
 
 
         return root;
