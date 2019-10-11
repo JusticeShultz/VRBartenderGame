@@ -33,7 +33,7 @@ public class HandMenu : MonoBehaviour
         {
             return;
         }
-        shaker.SetActive(false);
+        shakerIcon.SetActive(false);
         SetHandMenuMaterial();
     }
 
@@ -58,11 +58,11 @@ public class HandMenu : MonoBehaviour
         {
             if (DrinkManager.MyDinkIsShaken == false)
             {
-                shaker.SetActive(true);
+                shakerIcon.SetActive(true);
             }
             else 
             {
-                shaker.SetActive(false);
+                shakerIcon.SetActive(false);
                 MenuDrinkRenderer.gameObject.SetActive(true);
                 MenuDrinkRenderer.material.SetTexture("_MainTex", DrinkManager.DrinkList[DrinkManager.ScanDrink()].DrinkImg);
             }
