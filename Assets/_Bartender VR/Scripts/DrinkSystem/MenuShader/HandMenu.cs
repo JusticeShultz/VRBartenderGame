@@ -22,6 +22,9 @@ public class HandMenu : MonoBehaviour
     [SerializeField]
     private List<MeshRenderer> ServingMesh;
 
+    [SerializeField]
+    private GameObject shakerIcon;
+
     private Dictionary<DrinkSystemManager.DrinkIngredients, MeshRenderer> MenuIngredientsMesh = new Dictionary<DrinkSystemManager.DrinkIngredients, MeshRenderer>();
 
     void OnEnable()
@@ -30,7 +33,7 @@ public class HandMenu : MonoBehaviour
         {
             return;
         }
-
+        shaker.SetActive(false);
         SetHandMenuMaterial();
     }
 
@@ -53,8 +56,16 @@ public class HandMenu : MonoBehaviour
 
         if (DrinkManager.MyDrink.Count >= 5)
         {
-            MenuDrinkRenderer.gameObject.SetActive(true);
-            MenuDrinkRenderer.material.SetTexture("_MainTex", DrinkManager.DrinkList[DrinkManager.ScanDrink()].DrinkImg);
+            if (DrinkManager.MyDinkIsShaken == false)
+            {
+                shaker.SetActive(true);
+            }
+            else 
+            {
+                shaker.SetActive(false);
+                MenuDrinkRenderer.gameObject.SetActive(true);
+                MenuDrinkRenderer.material.SetTexture("_MainTex", DrinkManager.DrinkList[DrinkManager.ScanDrink()].DrinkImg);
+            }
         }
         else
         {

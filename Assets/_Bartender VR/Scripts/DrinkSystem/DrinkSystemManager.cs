@@ -75,6 +75,13 @@ public class DrinkSystemManager : MonoBehaviour
 
     [SerializeField] [ReadOnlyField]
     private bool myDrinkIsShaken = false;
+    public bool MyDinkIsShaken
+    {
+        get 
+        {
+            return myDrinkIsShaken;
+        }
+    }
 
 
     //Menu System
