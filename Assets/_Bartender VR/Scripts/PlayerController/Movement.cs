@@ -46,6 +46,9 @@ public class Movement : MonoBehaviour
             Crouching = !Crouching;
 
         Offset.transform.localPosition = new Vector3(-Camera.transform.localPosition.x, 0, -Camera.transform.localPosition.z);
+        //UnityEngine.XR.InputTracking.Recenter();
+        //Valve.VR.OpenVR.System.ResetSeatedZeroPose();
+        //Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
         HeadProxy.transform.position = Camera.transform.position;
         HeadProxy.transform.rotation = Quaternion.Euler(0, Camera.transform.rotation.eulerAngles.y, 0);
