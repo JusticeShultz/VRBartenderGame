@@ -17,7 +17,7 @@ public class PatronManager : MonoBehaviour
     [Header("Required Fields")]
     [SerializeField] public List<GameObject> spots;
     [SerializeField] public List<GameObject> coasters;
-    [SerializeField] public GameObject spawnLocation, exitLocation, patronPrefab;
+    [SerializeField] public GameObject spawnLocation, exitLocation, patronPrefab, goodDrinkParticles, badDrinkParticles;
 
     [Header("Generated Fields")]
     [SerializeField] public List<PatronAI> patrons;
@@ -105,11 +105,13 @@ public class PatronManager : MonoBehaviour
     {
         if (dsm.ValidateDrink(patrons[n].desiredDrink))
         {
-        patrons[n].gotDrink = true;
+            patrons[n].gotDrink = true;
+            Instantiate<GameObject>(goodDrinkParticles, patrons[n].transform.position + new Vector3(0f, 0.71f), goodDrinkParticles.transform.rotation);
         }
         else
         {
             patrons[n].state = 7;
+            Instantiate<GameObject>(badDrinkParticles, patrons[n].transform.position + new Vector3(0f, 0.71f), badDrinkParticles.transform.rotation);
         }
 
         return;
@@ -118,10 +120,10 @@ public class PatronManager : MonoBehaviour
     IBehaviour PopulateBehaviours()
     {
         var root = new SelectorNode();
-        var seqStates = new SequenceNode[10];
+        var seqStates = new SequenceNode[11];
         for(int i = 0; i < seqStates.Length; i++) { seqStates[i] = new SequenceNode(); }
-        var stateNodes = new State[10];
-        var switchNodes = new SwitchState[10];
+        var stateNodes = new State[11];
+        var switchNodes = new SwitchState[11];
 
         //root
         root.childBehaviors = PopulateBranch(seqStates[0],
@@ -133,7 +135,8 @@ public class PatronManager : MonoBehaviour
                                              seqStates[6],
                                              seqStates[7],
                                              seqStates[8],
-                                             seqStates[9]);
+                                             seqStates[9],
+                                             seqStates[10]);
 
         //state 0
         stateNodes[0] = new State(0);
